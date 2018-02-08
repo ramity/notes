@@ -184,39 +184,89 @@ Projects can have many teams
 - Requirements:
 
   - Code review
+
   - Good UI
+
   - Remote team collaboration
+
   - Features
+
   - Bulletproof secure extendable API
+
   - Symfony CMS approach.
     - **Easy to extend**
+
   - Documentation
     - Integrated markdown editor (w/ live preview)
+
   - Task interface
+
   - Task types
     - Bug
     - Feature request
+
   - Integrated voting system
+
   - Integrated calendar (plan sprints + see progress overtime)
+
   - Build in slack clone
     - Default added/created team and project channels.
     - Function similarly to slack in channel management + individual comms.
+
   - Project management
     - Dashboard management
       - UI management
     - Workboard management
       - Task management
+
   - Tasks can have weight that can be debated by any members who can view the tasks
+
   - TrackDuck similar approach for assigned tasks
     - https://goo.gl/CihCmv
+
   - Integrated time tracker
     - Toggl for inspiration
-  - cpp binary that runs as a process that enables users to see your progress. Shooting for real time application in which git is leveraged to determine how much work
+
+    - ```bash
+      # start integrated timer
+      raft timer start
+
+      # stop integrated timer
+      raft timer stop
+
+      # open link to webpage timer GUI
+      raft timer link
+
+      # show current statistics in shell
+      raft timer status
+
+      # set title
+      raft timer set title "SAMPLE TEXT"
+
+      # set task
+      raft timer set task T526
+
+      # set project
+      raft timer set project P253
+      ```
+
+  - cpp binary that runs as a process that enables users to see your progress. Shooting for real time application in which git is leveraged to determine how much work. Collab sessions enables a script that watches all files contained in the root directory for changes. When a file's last modified date is more recent than it's last saved date, it automatically pushes the output of `git diff HEAD > file.out` to the server where it is applied to a repo associated with the username of the user that pushed the code. `USERNAME-collab`. The contents in which are viewable via the web based gui.
+
+    - ```bash
+      # start a collab session
+      raft collab start
+
+      # stop a collab session
+      raft collab stop
+      ```
 
 - ```bash
-  git add .
   git diff HEAD
   # shows all local updates since last commit
   ```
 
-- ​
+- Similarly to arcanist, a token must be set to allow for the script to act on the user's behalf.
+
+  - ```bash
+    raft set token "nuGOesD42CKmpZCkBsqxZ2zUkae3gTeN"
+    ```
