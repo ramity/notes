@@ -250,7 +250,7 @@ Projects can have many teams
       raft timer set project P253
       ```
 
-  - cpp binary that runs as a process that enables users to see your progress. Shooting for real time application in which git is leveraged to determine how much work. Collab sessions enables a script that watches all files contained in the root directory for changes. When a file's last modified date is more recent than it's last saved date, it automatically pushes the output of `git diff HEAD > file.out` to the server where it is applied to a repo associated with the username of the user that pushed the code. `USERNAME-collab`. The contents in which are viewable via the web based gui.
+  - cpp binary that runs as a process that enables users to see your progress. Shooting for real time application in which git is leveraged to determine how much work. Collab sessions enables a script that watches all files contained in the root directory for changes. When a file's last modified date is more recent than it's last saved date, it automatically pushes the output of `git diff HEAD > file.out` to the server where it is applied to a repo associated with the username of the user that pushed the code. `USERNAME-collab`. The contents in which are viewable via the web based gui. This process can be done by combining the following link (https://stackoverflow.com/a/4610846) and `scp`-ing the file to the backend server. The process of watching the directory for file changes can be done with the following script (https://gist.github.com/senko/1154509) but a dep free script may require more searching. One could dig through the assetic:watch command to determine more information as to how that works (https://github.com/symfony/assetic-bundle/blob/master/Command/WatchCommand.php). If anything a cpp file could be started into a process that watches the directory, but stated under speculation entirely.
 
     - ```bash
       # start a collab session
@@ -270,3 +270,5 @@ Projects can have many teams
   - ```bash
     raft set token "nuGOesD42CKmpZCkBsqxZ2zUkae3gTeN"
     ```
+
+    ​
