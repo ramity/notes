@@ -274,7 +274,7 @@ Projects can have many teams
     raft set token "nuGOesD42CKmpZCkBsqxZ2zUkae3gTeN"
     ```
 
-- Encryption idea - Not exactly polished in current implementation, but an idea non-the-less:
+  - Encryption idea - Not exactly polished in current implementation, but an idea non-the-less:
 
   - Have the user make their password. Once it is passed to the server, the password is encrypted with a salt. The date created is then used as an additional step in such a way that:
 
@@ -334,5 +334,24 @@ Projects can have many teams
       ```
 
 - At this point, raft wraps all of git. It's worth mentioning that this approach is highly dependent on git being a specific version in the case that certain functions are different in different versions. This will require that calling functions that function differently in later/newer versions will check if the git version installed on the computer meets a criteria. By doing so, one could specify the functionality of raft. This layer of abstraction will add more work for the developer to support many to all git functions, but it will allow for an easy fix.
-
-- ​
+- User registration page
+  - require email
+  - require configuration setting in environment to toggle open registration
+    - open registration = any email can be used
+    - open request = must be either invited OR a request must be accepted (via email)
+    - invite only = must be invited by a user (via email)
+    - closed = no one new can register
+  - During registration, the user is asked to download the raft.sh file and add it to their path
+    - Upon completion, the user is asked to run the following command: `raft haze [url_to_truss_backend].com/api/haze [token]`
+      - Running this command will set the currently selected server to [url_to_truss_backend].com, hit an api enpoint on the truss_backend server via curl by doing something along the lines of: `$confirmToken = curl -H "Content-Type: application/json" -X POST -d '{"token":[token]}' [url_to_truss_backend]/api/haze`. After hitting the endpoint and receiving the confirmToken, the script continues by then (generating a ssh-key)[https://help.github.com/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent/] named truss. Then the truss.pub is curl-ed to the server (to be added to the authorized_keys file) along side the confirmToken (to validate whom is attempting to add there key). The user is finally prompted with a message to add the generated ssh-key to his keychain via ssh-add.
+        - Commands covered:
+          - `raft haze [url_to_truss_backend].com/api/haze [token]`
+            - Haze in the new guy by taking care of ssh key addition.
+          - `raft server select [url_to_truss_backend]`
+            - Sets the currently globally selected server in which information is set to exchange.
+            - If the current directory has a .raftconfig file, the values listed in the file superscede that set globally.
+  - Before moving on, it's important to note that all commands thus far have been technically posting information
+  - After registration, the user has the ability to do the following:
+    - Create a new repo:
+      - During this process, the user has a few options:
+        - `raft create [repo/project/review]`
